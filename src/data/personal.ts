@@ -27,7 +27,7 @@ export const personal = {
   mindset: "Learn → Build → Improve → Repeat",
 } as const;
 
-const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const assetPath = (path: string) => path;
 
 export const educationTimeline = [
   {

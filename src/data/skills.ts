@@ -11,7 +11,7 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
-const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const assetPath = (path: string) => path;
 
 export const skillCategories: SkillCategory[] = [
   {

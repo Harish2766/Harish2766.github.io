@@ -10,7 +10,7 @@ export interface Project {
   github?: string;
 }
 
-const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const assetPath = (path: string) => path;
 
 export const projects: Project[] = [
   {
