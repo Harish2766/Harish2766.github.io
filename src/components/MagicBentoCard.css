@@ -1,0 +1,222 @@
+.magic-bento-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 160px;
+  --glow-color: 132, 0, 255;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+  min-height: 200px;
+  padding: 1.25rem;
+
+  color: #f8fafc;
+  border: 1px solid #2f293a;
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.magic-bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle var(--glow-radius) at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), 0.18) 0%,
+    rgba(var(--glow-color), 0.07) 35%,
+    transparent 70%
+  );
+
+  opacity: var(--glow-intensity);
+  transition: opacity 250ms ease;
+}
+
+.magic-bento-card.magic-bento-border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle var(--glow-radius) at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), 0.95) 0%,
+    rgba(var(--glow-color), 0.3) 35%,
+    transparent 70%
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+
+  opacity: var(--glow-intensity);
+  transition: opacity 250ms ease;
+}
+
+.magic-bento-card:hover {
+  border-color: rgba(var(--glow-color), 0.55);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 0 24px rgba(var(--glow-color), 0.12);
+}
+
+.magic-bento-card.magic-bento-compact {
+  min-height: auto;
+  padding: 1rem 1.25rem;
+}
+
+.magic-bento-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+}
+
+.magic-bento-content.magic-bento-content-custom {
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.magic-bento-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.magic-bento-label {
+  color: #c4b5fd;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.magic-bento-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.magic-bento-title {
+  margin: 0;
+
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.magic-bento-description {
+  margin: 0;
+
+  color: #cbd5e1;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.magic-bento-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.magic-bento-particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+
+  background: rgba(var(--glow-color), 1);
+
+  box-shadow:
+    0 0 6px rgba(var(--glow-color), 0.8),
+    0 0 14px rgba(var(--glow-color), 0.3);
+
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.magic-bento-ripple {
+  position: absolute;
+  z-index: 4;
+
+  display: block;
+  border-radius: 50%;
+
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.text-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .magic-bento-card {
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magic-bento-card,
+  .magic-bento-card::before,
+  .magic-bento-card::after {
+    transition: none !important;
+  }
+}

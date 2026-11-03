@@ -1,0 +1,689 @@
+@import "tailwindcss";
+
+/* ── Midnight Purple Design System ── */
+@theme {
+  /* Backgrounds */
+  --color-midnight-900: #08090D;
+  --color-midnight-800: #0D0F16;
+  --color-midnight-700: #11131C;
+  --color-midnight-600: #151522;
+  --color-midnight-500: #1A1A2E;
+
+  /* Purple Accents */
+  --color-purple-900: #4C1D95;
+  --color-purple-700: #6D28D9;
+  --color-purple-600: #7C3AED;
+  --color-purple-500: #8B5CF6;
+  --color-purple-400: #A855F7;
+  --color-purple-300: #C084FC;
+  --color-purple-200: #E879F9;
+
+  /* Text */
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+
+  /* Borders */
+  --color-border-dark: #262334;
+  --color-border-glow: #3B2B5C;
+
+  /* Fonts */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-slide-right: slide-right 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-wave: wave 8s ease-in-out infinite;
+  --animate-gradient: gradient-shift 8s ease infinite;
+}
+
+/* ── Global Styles ── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-midnight-900);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-midnight-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-midnight-600);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-purple-600);
+}
+
+/* ── Keyframes — Original ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes wave {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-5px) translateY(-3px); }
+  50% { transform: translateX(0) translateY(-6px); }
+  75% { transform: translateX(5px) translateY(-3px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes typing-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes particle-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-80vh) translateX(30px); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Keyframes — Animation Enhancement ── */
+
+/* Hero entrance: fade up with subtle translateY */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero name: fade up + letter-spacing settle */
+@keyframes hero-name-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    letter-spacing: 2px;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+/* Navbar entrance: slide down */
+@keyframes nav-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero editor: slow vertical bob */
+@keyframes hero-editor-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Floating icon variations — independent paths */
+@keyframes float-icon-1 {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes float-icon-2 {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes float-icon-3 {
+  0%, 100% {
+    transform: translateX(0px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+}
+
+/* Slow background gradient drift */
+@keyframes bg-ambient-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(15px, -10px) scale(1.02);
+  }
+  66% {
+    transform: translate(-10px, 8px) scale(0.98);
+  }
+}
+
+@keyframes bg-ambient-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-12px, 10px) scale(1.03);
+  }
+  70% {
+    transform: translate(8px, -6px) scale(0.97);
+  }
+}
+
+/* Dynamic Hero Wave Animations */
+@keyframes wave-slide-1 {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes wave-slide-2 {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes wave-slide-3 {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes wave-bob-1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes wave-bob-2 {
+  0%, 100% { transform: translateY(-8px); }
+  50% { transform: translateY(4px); }
+}
+
+@keyframes wave-bob-3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* Typewriter cursor blink */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Train coach carriage transitions */
+@keyframes train-coach-in {
+  0% {
+    transform: translate3d(100px, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes train-coach-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-100px, 0, 0);
+    opacity: 0;
+  }
+}
+
+/* Hero role: fade up with subtle purple glow that settles */
+@keyframes role-glow-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0));
+  }
+  60% {
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.45));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0));
+  }
+}
+
+/* Contact CTA entrance: scale up from 0.97 + fade + purple glow bloom */
+@keyframes contact-cta-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    box-shadow: 0 0 0 rgba(124, 58, 237, 0);
+  }
+  70% {
+    box-shadow: 0 0 35px rgba(124, 58, 237, 0.35);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+  }
+}
+
+/* Section heading accent line grow */
+@keyframes accent-line-grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 64px;
+    opacity: 1;
+  }
+}
+
+@keyframes accent-dot-scale {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Footer gradient line shift */
+@keyframes footer-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Skills grid entrance */
+@keyframes skill-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Skills grid exit */
+@keyframes skill-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+
+/* Slide from left */
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide from right */
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Utility Classes ── */
+
+/* Hero entrance utilities */
+.hero-enter {
+  opacity: 0;
+  animation: hero-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-name-enter {
+  opacity: 0;
+  animation: hero-name-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-role-enter {
+  opacity: 0;
+  animation: role-glow-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.nav-enter {
+  animation: nav-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Editor float */
+.editor-float {
+  animation: hero-editor-float 7s ease-in-out infinite;
+}
+
+/* Floating icon classes */
+.float-icon-1 {
+  animation: float-icon-1 4.5s ease-in-out infinite;
+}
+.float-icon-2 {
+  animation: float-icon-2 5.5s ease-in-out infinite;
+}
+.float-icon-3 {
+  animation: float-icon-3 6.5s ease-in-out infinite;
+}
+
+/* Background ambient drift */
+.bg-drift-1 {
+  animation: bg-ambient-1 20s ease-in-out infinite;
+}
+.bg-drift-2 {
+  animation: bg-ambient-2 25s ease-in-out infinite;
+}
+
+/* Dynamic Hero wave classes */
+.hero-wave-slide-1 {
+  animation: wave-slide-1 22s linear infinite;
+  will-change: transform;
+}
+
+.hero-wave-slide-2 {
+  animation: wave-slide-2 15s linear infinite;
+  will-change: transform;
+}
+
+.hero-wave-slide-3 {
+  animation: wave-slide-3 9.5s linear infinite;
+  will-change: transform;
+}
+
+.hero-wave-bob-1 {
+  animation: wave-bob-1 7s ease-in-out infinite;
+}
+
+.hero-wave-bob-2 {
+  animation: wave-bob-2 5s ease-in-out infinite;
+}
+
+.hero-wave-bob-3 {
+  animation: wave-bob-3 3.8s ease-in-out infinite;
+}
+
+/* Typewriter cursor */
+.animate-cursor-blink {
+  animation: cursor-blink 0.9s infinite;
+}
+
+/* Train coach classes */
+.train-coach-enter {
+  animation: train-coach-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.train-coach-exit {
+  animation: train-coach-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Section heading accent animation */
+.accent-line-animate {
+  width: 0;
+  opacity: 0;
+}
+.accent-line-animate.is-visible {
+  animation: accent-line-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.accent-dot-animate {
+  transform: scale(0);
+  opacity: 0;
+}
+.accent-dot-animate.is-visible {
+  animation: accent-dot-scale 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+/* Footer gradient shift */
+.footer-gradient-animate {
+  background-size: 200% 100%;
+  animation: footer-gradient-shift 18s ease infinite;
+}
+
+/* Skills grid staggered entrance & exit */
+.skill-item-enter {
+  opacity: 0;
+  animation: skill-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.skill-grid-exit {
+  animation: skill-exit 0.28s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+/* Contact CTA entrance */
+.contact-cta-enter {
+  animation: contact-cta-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 60;
+  transform-origin: left;
+  background: linear-gradient(90deg, #6D28D9, #7C3AED, #A855F7);
+  pointer-events: none;
+}
+
+/* Cursor glow */
+.cursor-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* Glows */
+.glow-purple {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.12);
+}
+.glow-purple-strong {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.2);
+}
+.glow-purple-hover:hover {
+  box-shadow: 0 0 35px rgba(124, 58, 237, 0.15);
+}
+
+/* Text Gradient */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #7C3AED, #A855F7, #C084FC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background Gradients */
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #6D28D9, #7C3AED, #A855F7);
+}
+.bg-gradient-purple-deep {
+  background: linear-gradient(135deg, #4C1D95, #7C3AED, #C084FC);
+}
+.bg-gradient-card {
+  background: linear-gradient(145deg, #11131C, #0D0F16);
+}
+
+/* Glass Effects */
+.glass {
+  background: rgba(13, 15, 22, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.glass-strong {
+  background: rgba(8, 9, 13, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.3),
+    transparent
+  );
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-purple-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* ── Accessibility: Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-enter,
+  .hero-name-enter,
+  .hero-role-enter,
+  .nav-enter,
+  .contact-cta-enter {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+  }
+
+  .editor-float,
+  .float-icon-1,
+  .float-icon-2,
+  .float-icon-3,
+  .bg-drift-1,
+  .bg-drift-2,
+  .hero-wave-slide-1,
+  .hero-wave-slide-2,
+  .hero-wave-slide-3,
+  .hero-wave-bob-1,
+  .hero-wave-bob-2,
+  .hero-wave-bob-3,
+  .train-coach-enter,
+  .train-coach-exit,
+  .footer-gradient-animate {
+    animation: none;
+  }
+
+  .accent-line-animate,
+  .accent-dot-animate {
+    width: 64px;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+}
