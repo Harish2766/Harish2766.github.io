@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import emailjs from "@emailjs/browser";
+import { socialLinks } from "../data/personal";
 import { CloseIcon } from "./ui/Icons";
 
 interface ContactFormProps {
@@ -9,7 +10,6 @@ interface ContactFormProps {
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const RECIPIENT_EMAIL = "skharish2766@gmail.com";
 
 export default function ContactForm({ onClose }: ContactFormProps) {
   const [name, setName] = useState("");
@@ -38,7 +38,8 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           from_name: name.trim(),
           from_email: email.trim(),
           message: message.trim(),
-          to_email: RECIPIENT_EMAIL,
+          to_email: socialLinks.email,
+          reply_to: email.trim(),
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
       );

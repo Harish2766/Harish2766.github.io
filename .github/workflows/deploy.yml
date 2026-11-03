@@ -34,11 +34,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate EmailJS configuration
+      - name: Configure EmailJS environment
         run: |
-          test -n "$VITE_EMAILJS_SERVICE_ID" || (echo "Missing VITE_EMAILJS_SERVICE_ID" && exit 1)
-          test -n "$VITE_EMAILJS_TEMPLATE_ID" || (echo "Missing VITE_EMAILJS_TEMPLATE_ID" && exit 1)
-          test -n "$VITE_EMAILJS_PUBLIC_KEY" || (echo "Missing VITE_EMAILJS_PUBLIC_KEY" && exit 1)
+          cp .env.example .env
+          if [ -n "$VITE_EMAILJS_SERVICE_ID" ]; then
+            echo "VITE_EMAILJS_SERVICE_ID=$VITE_EMAILJS_SERVICE_ID" >> .env
+          fi
+          if [ -n "$VITE_EMAILJS_TEMPLATE_ID" ]; then
+            echo "VITE_EMAILJS_TEMPLATE_ID=$VITE_EMAILJS_TEMPLATE_ID" >> .env
+          fi
+          if [ -n "$VITE_EMAILJS_PUBLIC_KEY" ]; then
+            echo "VITE_EMAILJS_PUBLIC_KEY=$VITE_EMAILJS_PUBLIC_KEY" >> .env
+          fi
         env:
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
           VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
@@ -46,10 +53,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
-          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
-          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

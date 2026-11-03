@@ -4,14 +4,14 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ## Contact form
 
-The Get In Touch form sends messages through EmailJS to `skharish2766@gmail.com`.
+The Get In Touch form sends messages through EmailJS to `harishgs2766@gmail.com`.
 
 1. Create an EmailJS service and email template.
-2. Set the template recipient to `{{to_email}}` (or directly to `skharish2766@gmail.com`).
+2. Set the template recipient to `{{to_email}}` (or directly to `harishgs2766@gmail.com`).
 3. Copy `.env.example` to `.env` and fill in the service ID, template ID, and public key.
 4. Restart the Vite dev server after changing `.env`.
 
-The template receives `from_name`, `from_email`, `message`, and `to_email`.
+The template receives `from_name`, `from_email`, `message`, `to_email`, and `reply_to`.
 
 ## GitHub Pages deployment
 
@@ -23,6 +23,8 @@ Add these repository secrets under **Settings > Secrets and variables > Actions*
 - `VITE_EMAILJS_PUBLIC_KEY`
 
 In **Settings > Pages**, set the source to **GitHub Actions**. The deployed site will be available at `https://harish2766.github.io/Assets/`.
+
+The workflow uses `.env.example` for the public EmailJS configuration when repository secrets are not set. Add the three secrets above to override those values without changing the repository.
 
 Currently, two official plugins are available:
 
