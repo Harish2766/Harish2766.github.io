@@ -27,12 +27,14 @@ export const personal = {
   mindset: "Learn → Build → Improve → Repeat",
 } as const;
 
+const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 export const educationTimeline = [
   {
     id: "school",
     level: "CLASS 10",
     institution: "Sri Ramakrishna Matric. School",
-    logo: "/logos/sri-ramakrishna.png",
+    logo: assetPath("logos/sri-ramakrishna.png"),
     description:
       "Built a strong academic foundation and developed curiosity for learning.",
     tags: ["Foundation", "Basics", "Curiosity"],
@@ -42,7 +44,7 @@ export const educationTimeline = [
     id: "hsc",
     level: "CLASS 12",
     institution: "Vivekananda Matric. Hr. Secondary School",
-    logo: "/logos/vivekananda.jpg",
+    logo: assetPath("logos/vivekananda.jpg"),
     description:
       "Explored my interests, strengthened problem-solving skills and prepared for higher education.",
     tags: ["Focus", "Growth", "Preparation"],
@@ -52,7 +54,7 @@ export const educationTimeline = [
     id: "college",
     level: "B.E. – CSE",
     institution: "MIT, Anna University",
-    logo: "/logos/mit.png",
+    logo: assetPath("logos/mit.png"),
     description:
       "Currently pursuing my B.E. in Computer Science and Engineering, building technical skills and working toward a meaningful future.",
     tags: ["Engineering", "Innovation", "Future"],
